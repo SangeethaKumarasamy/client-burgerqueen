@@ -3,7 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useDispatch } from "react-redux";
 import { placeOrder } from "../actions/orderActions";
 
-function CheckOut(subtotal) {
+function CheckOut({subtotal}) {
   const dispatch = useDispatch();
 
   function tokenHandler(token) {
