@@ -11,7 +11,7 @@ function CheckOut({subtotal}) {
     dispatch(placeOrder(token, subtotal));
   }
   return (
-    <div>
+    <div> 
       <StripeCheckout
         amount={subtotal * 100}
         shippingAddress

@@ -9,7 +9,7 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
       token,
       subtotal,
       currentUser,
-      cartItems
+      cartItems,
     });
     dispatch({ type: "PLACE_ORDER_SUCCESS" });
     console.log(response);
