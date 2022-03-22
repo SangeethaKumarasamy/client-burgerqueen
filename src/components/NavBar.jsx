@@ -31,7 +31,7 @@ export default function NavBar() {
               <div className="dropdown">
                 <a className="dropbtn nav-link">{currentUser.name}</a>
                 <div className="dropdown-content">
-                  <a  className="dropdown-item" href="#">Orders</a>
+                  <a  className="dropdown-item" href="/orders">Orders</a>
                   <a
                     className="dropdown-item"
                     href="#"
