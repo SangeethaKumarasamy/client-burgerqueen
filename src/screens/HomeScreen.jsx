@@ -5,6 +5,7 @@ import Burger from "../components/Burger";
 import { getAllBurgers } from "../actions/burgerActions";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import Filter from "../components/Filter";
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -18,11 +19,13 @@ function HomeScreen() {
 
   return (
     <div>
+      <Filter />
+
       <div className="row justify-content-center">
         {loading ? (
           <Loading />
         ) : error ? (
-          <Error error="Something went wrong !!"/>
+          <Error error="Something went wrong !!" />
         ) : (
           burgers.map((burger) => {
             return (
