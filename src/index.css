@@ -113,3 +113,7 @@ input {
   color:white;
   padding:20px;
 }
+
+td,th,tr{
+  text-align: left;
+}

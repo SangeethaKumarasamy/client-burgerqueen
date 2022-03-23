@@ -17,12 +17,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/cart" element={<CartScreen />} />
+          <Route path="/cart"element={<CartScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LogInScreen />} />
-          <Route path="/orders" element={<OrdersScreen />} />
-          <Route path="/admin" element={<AdminScreen />} />
-
+          <Route path="/orders"  element={<OrdersScreen />} />
+          <Route path="/admin/*" element={<AdminScreen />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -50,8 +50,8 @@ function Burger({ burger }) {
               setQuantity(e.target.value);
             }}
           >
-            {[...Array(10).keys()].map((x, i,id) => {
-              return <option value={i + 1} key={id}>{i + 1}</option>;
+            {[...Array(10).keys()].map((x, i) => {
+              return <option value={i + 1} key={i}>{i + 1}</option>;
             })}
           </select>
         </div>
