@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import { addBurger } from "../actions/burgerActions";
+
 
 function AddBurger() {
   const [name, setName] = useState("");
   const [quarterPrice, setQuarterPrice] = useState();
   const [doublePrice, setDoublePrice] = useState();
   const [bigMacPrice, setBigMacPrice] = useState();
-  const [imageUrl, setImageUrl] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState();
+  const dispatch = useDispatch();
 
   function formHandler(e) {
     e.preventDefault();
     const burger = {
       name,
-      imageUrl,
+      image,
       description,
       category,
       prices: {
@@ -23,6 +27,7 @@ function AddBurger() {
       },
     };
     console.log(burger);
+    dispatch(addBurger(burger)); 
   }
   return (
     <div>
@@ -68,10 +73,10 @@ function AddBurger() {
           <input
             className="form-control"
             type="text"
-            placeholder="image URL"
-            value={imageUrl}
+            placeholder="Image "
+            value={image}
             onChange={(e) => {
-              setImageUrl(e.target.value);
+              setImage(e.target.value);
             }}
           />
           <input

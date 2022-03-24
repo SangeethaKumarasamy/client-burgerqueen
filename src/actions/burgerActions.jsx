@@ -28,3 +28,14 @@ export const filterBurgers = (searchKey, category) => async (dispatch) => {
     dispatch({ type: "GET_BURGERS_FAILED", payload: error });
   }
 };
+
+export const addBurger = (burger) => async (dispatch) => {
+  dispatch({ type: "ADD_BURGER_REQUEST" });
+  try {
+    const response = await axios.post("/api/burger/addburger", { burger });
+    console.log(response);
+    dispatch({ type: "ADD_BURGER_SUCCESS" });
+  } catch (error) {
+    dispatch({ type: "ADD_BURGER_FAILED", payload: error });
+  }
+};
