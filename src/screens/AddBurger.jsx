@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBurger } from "../actions/burgerActions";
-
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+import Success from "../components/Success";
 
 function AddBurger() {
   const [name, setName] = useState("");
@@ -11,7 +13,11 @@ function AddBurger() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState();
+
   const dispatch = useDispatch();
+
+  const addBurgerState = useSelector((state) => state.addBurgerReducer);
+  const { loading, error, success } = addBurgerState;
 
   function formHandler(e) {
     e.preventDefault();
@@ -21,18 +27,23 @@ function AddBurger() {
       description,
       category,
       prices: {
-        quarterPrice: quarterPrice,
-        doublePrice: doublePrice,
-        bigMacPrice: bigMacPrice,
+        Quarter: quarterPrice,
+        Double: doublePrice,
+        Big_Mac: bigMacPrice,
       },
     };
     console.log(burger);
-    dispatch(addBurger(burger)); 
+    dispatch(addBurger(burger));
   }
   return (
     <div>
       <div>
         <h2>Add Burger</h2>
+        {loading && (<Loading/>)}
+        {error && (<Error error="Something went wrong !!"/>)}
+        {success && (<Success success="New Burger added successfully!"/>)}
+
+        
         <form onSubmit={formHandler}>
           <input
             className="form-control"

@@ -32,7 +32,7 @@ export const filterBurgers = (searchKey, category) => async (dispatch) => {
 export const addBurger = (burger) => async (dispatch) => {
   dispatch({ type: "ADD_BURGER_REQUEST" });
   try {
-    const response = await axios.post("/api/burger/addburger", { burger });
+    const response = await axios.post("/api/burgers/addburger", { burger });
     console.log(response);
     dispatch({ type: "ADD_BURGER_SUCCESS" });
   } catch (error) {

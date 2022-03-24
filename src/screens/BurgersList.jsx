@@ -28,13 +28,12 @@ function BurgersList() {
         </thead>
         <tbody>
           {burgers &&
-            burgers.map((burger) => {
+            burgers.map(burger => {
               return (
                 <tr>
                   <td>{burger.name}</td>
                   <td>
                     Quarter:{burger.prices[0]["Quarter"]}<br/>
-
                     Double:{burger.prices[0]["Double"]}<br/>
                     Big_Mac:{burger.prices[0]["Big_Mac"]}
                   </td>
