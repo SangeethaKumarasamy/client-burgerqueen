@@ -15,7 +15,6 @@ function EditBurger() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [formData, setFormData] = useState();
 
   const getburgerbyidstate = useSelector((state) => state.getBurgerByIdReducer);
   const { burgers: burger, error, loading } = getburgerbyidstate;
