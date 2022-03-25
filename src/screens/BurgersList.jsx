@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Filter from "../components/Filter";
-import { getAllBurgers } from "../actions/burgerActions";
+import { getAllBurgers,deleteBurger } from "../actions/burgerActions";
 import { Link } from "react-router-dom";
 
 function BurgersList() {
@@ -16,8 +16,8 @@ function BurgersList() {
   return (
     <div>
       <h2>Burgers List</h2>
-      {loading && <Loading />}
-      {error && <Error error="Something went wrong !!" />}
+      {loading && (<Loading />)}
+      {error && (<Error error="Something went wrong !!" />)}
       <table className="table table-dark table-striped border">
         <thead className="thead">
           <tr>
@@ -42,7 +42,7 @@ function BurgersList() {
                   </td>
                   <td>{burger.category}</td>
                   <td>
-                    <i className="fa fa-trash m-2"></i>
+                    <i className="fa fa-trash m-2" onClick={()=>{dispatch(deleteBurger(burger._id))}}></i>
                     <Link to={`/admin/editBurger/${burger._id}`}>
                       <i className="fa fa-edit m-2"></i>
                     </Link>

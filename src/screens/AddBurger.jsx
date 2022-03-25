@@ -39,9 +39,9 @@ function AddBurger() {
     <div>
       <div>
         <h2>Add Burger</h2>
-        {loading && <Loading/>}
-        {error && <Error error="Something went wrong !!"/>}
-        {success && <Success success="New Burger added successfully !!"/>}
+        {loading && (<Loading/>)}
+        {error && (<Error error="Something went wrong !!"/>)}
+        {success && (<Success success="New Burger added successfully !!"/>)}
 
         
         <form onSubmit={formHandler}>

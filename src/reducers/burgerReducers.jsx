@@ -42,7 +42,7 @@ export const getBurgerByIdReducer = (state = { }, action) => {
   }
 };
 
-export const addBurgerReducer = (state = {} , action) => {
+export const addBurgerReducer = (state = { } , action) => {
   switch (action.type) {
     case "ADD_BURGER_REQUEST":
       return {
@@ -58,6 +58,28 @@ export const addBurgerReducer = (state = {} , action) => {
       return {
         error: action.payload,
         loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export const editBurgerReducer = (state = { } , action) => {
+  switch (action.type) {
+    case "EDIT_BURGER_REQUEST":
+      return {
+        editloading: true,
+        ...state,
+      };
+    case "EDIT_BURGER_SUCCESS":
+      return {
+        editloading: false,
+        editburgers: true,
+      };
+    case "EDIT_BURGER_FAILED":
+      return {
+        editerror: action.payload,
+        editloading: false,
       };
     default:
       return state;

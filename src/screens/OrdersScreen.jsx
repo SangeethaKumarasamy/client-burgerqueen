@@ -17,8 +17,8 @@ function OrdersScreen() {
     <div>
       <p>My Orders</p>
       <div className="row justify-content-center" style={{backgroundColor:"wheat",color:"black"}}>
-        {loading && <Loading />}
-        {error && <Error error="Something went wrong !!" />}
+        {loading && (<Loading />)}
+        {error && (<Error error="Something went wrong !!" />)}
         {order &&
           order.map((orders) => {
             return (
@@ -27,7 +27,7 @@ function OrdersScreen() {
                   <div className="text-left w-100 m-1">
                     <h3 style={{ fontSize: "25px" }}>Items</h3>
                     <hr/>
-                    {order.orderItems.map((item) => {
+                    {orders.orderItems.map((item) => {
                       return (
                         <div>
                           <h1>
