@@ -10,6 +10,18 @@ export const getAllBurgers = () => async (dispatch) => {
     dispatch({ type: "GET_BURGERS_FAILED", payload: error });
   }
 };
+
+export const getBurgerById = () => async (dispatch) => {
+  dispatch({ type: "GET_BURGERSBYID_REQUEST" });
+  try {
+    const response = await axios.get("/api/burgers/getBurgerById");
+    console.log(response);
+    dispatch({ type: "GET_BURGERSBYID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_BURGERSBYID_FAILED", payload: error });
+  }
+};
+
 export const filterBurgers = (searchKey, category) => async (dispatch) => {
   var filteredBurgers;
   dispatch({ type: "GET_BURGERS_REQUEST" });

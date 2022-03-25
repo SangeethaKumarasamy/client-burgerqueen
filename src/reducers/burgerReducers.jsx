@@ -20,6 +20,28 @@ export const getAllBurgersReducer = (state = { burgers: [] }, action) => {
   }
 };
 
+export const getBurgerByIdReducer = (state = { }, action) => {
+  switch (action.type) {
+    case "GET_BURGERSBYID_REQUEST":
+      return {
+        loading: true,
+        ...state,
+      };
+    case "GET_BURGERSBYID_SUCCESS":
+      return {
+        loading: false,
+        burgers: action.payload,
+      };
+    case "GET_BURGERSBYID_FAILED":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
 export const addBurgerReducer = (state = {} , action) => {
   switch (action.type) {
     case "ADD_BURGER_REQUEST":

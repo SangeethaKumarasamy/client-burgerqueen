@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Filter from "../components/Filter";
 import { getAllBurgers } from "../actions/burgerActions";
+import { Link } from "react-router-dom";
 
 function BurgersList() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function BurgersList() {
       {error && <Error error="Something went wrong !!" />}
       <table className="table table-dark table-striped border">
         <thead className="thead">
-          <tr >
+          <tr>
             <th>Name</th>
             <th>Price</th>
             <th>Category</th>
@@ -28,19 +29,23 @@ function BurgersList() {
         </thead>
         <tbody>
           {burgers &&
-            burgers.map(burger => {
+            burgers.map((burger) => {
               return (
                 <tr>
                   <td>{burger.name}</td>
                   <td>
-                    Quarter:{burger.prices[0]["Quarter"]}<br/>
-                    Double:{burger.prices[0]["Double"]}<br/>
+                    Quarter:{burger.prices[0]["Quarter"]}
+                    <br />
+                    Double:{burger.prices[0]["Double"]}
+                    <br />
                     Big_Mac:{burger.prices[0]["Big_Mac"]}
                   </td>
                   <td>{burger.category}</td>
                   <td>
                     <i className="fa fa-trash m-2"></i>
-                    <i className="fa fa-edit m-2"></i>
+                    <Link to={`/admin/editBurger/${burger._id}`}>
+                      <i className="fa fa-edit m-2"></i>
+                    </Link>
                   </td>
                 </tr>
               );

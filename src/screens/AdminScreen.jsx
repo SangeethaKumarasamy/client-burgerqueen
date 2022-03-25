@@ -5,6 +5,7 @@ import UsersList from "./UsersList";
 import BurgersList from "./BurgersList";
 import AddBurger from "./AddBurger";
 import OrdersList from "./OrdersList";
+import EditBurger from "./EditBurger";
 
 function AdminScreen() {
   const userState = useSelector((state) => state.loginUserReducer);
@@ -28,13 +29,19 @@ function AdminScreen() {
               </Link>
             </li>
             <li>
-              <Link to="/admin/burgersList" style={{ color: "white" }}>Burgers List</Link>
+              <Link to="/admin/burgersList" style={{ color: "white" }}>
+                Burgers List
+              </Link>
             </li>
             <li>
-              <Link to="/admin/addBurger" style={{ color: "white" }}>Add New Burger</Link>
+              <Link to="/admin/addBurger" style={{ color: "white" }}>
+                Add New Burger
+              </Link>
             </li>
             <li>
-              <Link to="/admin/ordersList" style={{ color: "white" }}>Orders List</Link>
+              <Link to="/admin/ordersList" style={{ color: "white" }}>
+                Orders List
+              </Link>
             </li>
           </ul>
           <Routes>
@@ -42,6 +49,7 @@ function AdminScreen() {
             <Route path="/burgersList" element={<BurgersList />} />
             <Route path="/addBurger" element={<AddBurger />} />
             <Route path="/ordersList" element={<OrdersList />} />
+            <Route path="/editBurger/:burgerid" element={<EditBurger />} />
           </Routes>
         </div>
       </div>
