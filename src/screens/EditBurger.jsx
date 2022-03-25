@@ -42,7 +42,7 @@ function EditBurger() {
   }, [burger, dispatch]);
 
   function formHandler(e) {
-    e.preventDefault();
+     e.preventDefault();
 
     const editedburger = {
       _id: burgerid,
@@ -80,7 +80,7 @@ function EditBurger() {
             placeholder="Name"
             value={name}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setName(e.target.value);
               console.log(name);
             }}
@@ -91,7 +91,7 @@ function EditBurger() {
             placeholder="Quarter variant price"
             value={quarterPrice}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setQuarterPrice(e.target.value);
             }}
           />
@@ -101,7 +101,7 @@ function EditBurger() {
             placeholder="Double variant price"
             value={doublePrice}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setDoublePrice(e.target.value);
             }}
           />
@@ -111,7 +111,7 @@ function EditBurger() {
             placeholder="Big-Mac variant price"
             value={bigMacPrice}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setBigMacPrice(e.target.value);
             }}
           />
@@ -121,7 +121,7 @@ function EditBurger() {
             placeholder="Image "
             value={image}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setImage(e.target.value);
             }}
           />
@@ -131,7 +131,7 @@ function EditBurger() {
             placeholder="Description"
             value={description}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setDescription(e.target.value);
             }}
           />
@@ -142,7 +142,7 @@ function EditBurger() {
             placeholder="Category"
             value={category}
             onChange={(e) => {
-              e.preventDefault();
+               //e.preventDefault();
               setCategory(e.target.value);
             }}
           />
