@@ -9,15 +9,16 @@ import Success from "../components/Success";
 function EditBurger() {
   const { burgerid } = useParams();
   const [name, setName] = useState("");
-  const [quarterPrice, setQuarterPrice] = useState();
-  const [doublePrice, setDoublePrice] = useState();
-  const [bigMacPrice, setBigMacPrice] = useState();
+  const [quarterPrice, setQuarterPrice] = useState(0);
+  const [doublePrice, setDoublePrice] = useState(0);
+  const [bigMacPrice, setBigMacPrice] = useState(0);
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("");
+  const [formData, setFormData] = useState();
 
   const getburgerbyidstate = useSelector((state) => state.getBurgerByIdReducer);
-  const { burger, error, loading } = getburgerbyidstate;
+  const { burgers: burger, error, loading } = getburgerbyidstate;
 
   const editburgerstate = useSelector((state) => state.editBurgerReducer);
   const { editburger, editloading, editsuccess } = editburgerstate;
@@ -25,19 +26,17 @@ function EditBurger() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (burger) {
-      if (burger._id == burgerid) {
-        setName(burger.name);
-        setDescription(burger.description);
-        setCategory(burger.category);
-        setQuarterPrice(burger.prices[0]["Quarter"]);
-        setDoublePrice(burger.prices[0]["Double"]);
-        setBigMacPrice(burger.prices[0]["Big_Mac"]);
-        setImage(burger.image);
-      } else {
-        dispatch(getBurgerById(burgerid));
-      }
+    if (!burger) {
+      dispatch(getBurgerById(burgerid));
     } else {
+      setName(burger.name);
+      setDescription(burger.description);
+      setCategory(burger.category);
+      setQuarterPrice(burger.prices[0]["Quarter"]);
+      setDoublePrice(burger.prices[0]["Double"]);
+      setBigMacPrice(burger.prices[0]["Big_Mac"]);
+      setImage(burger.image);
+
       dispatch(getBurgerById(burgerid));
     }
   }, [burger, dispatch]);
@@ -66,13 +65,13 @@ function EditBurger() {
       <h2>Edit Burger</h2>
       <h4>Burger Id : {burgerid}</h4>
       <div className="row justify-content-center">
-        {loading &&( <Loading />)}
-        {error && (<Error error="Something went wrong !!" />)}
-       
+        {loading && <Loading />}
+        {error && <Error error="Something went wrong !!" />}
+
         {editsuccess && (
           <Success success="Burger Details successfully updated" />
         )}
-        {editloading && (<Loading />)}
+        {editloading && <Loading />}
 
         <form onSubmit={formHandler}>
           <input
@@ -81,7 +80,9 @@ function EditBurger() {
             placeholder="Name"
             value={name}
             onChange={(e) => {
+              e.preventDefault();
               setName(e.target.value);
+              console.log(name);
             }}
           />
           <input
@@ -90,6 +91,7 @@ function EditBurger() {
             placeholder="Quarter variant price"
             value={quarterPrice}
             onChange={(e) => {
+              e.preventDefault();
               setQuarterPrice(e.target.value);
             }}
           />
@@ -99,6 +101,7 @@ function EditBurger() {
             placeholder="Double variant price"
             value={doublePrice}
             onChange={(e) => {
+              e.preventDefault();
               setDoublePrice(e.target.value);
             }}
           />
@@ -108,6 +111,7 @@ function EditBurger() {
             placeholder="Big-Mac variant price"
             value={bigMacPrice}
             onChange={(e) => {
+              e.preventDefault();
               setBigMacPrice(e.target.value);
             }}
           />
@@ -117,6 +121,7 @@ function EditBurger() {
             placeholder="Image "
             value={image}
             onChange={(e) => {
+              e.preventDefault();
               setImage(e.target.value);
             }}
           />
@@ -126,6 +131,7 @@ function EditBurger() {
             placeholder="Description"
             value={description}
             onChange={(e) => {
+              e.preventDefault();
               setDescription(e.target.value);
             }}
           />
@@ -136,6 +142,7 @@ function EditBurger() {
             placeholder="Category"
             value={category}
             onChange={(e) => {
+              e.preventDefault();
               setCategory(e.target.value);
             }}
           />

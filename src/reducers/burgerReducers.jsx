@@ -20,7 +20,7 @@ export const getAllBurgersReducer = (state = { burgers: [] }, action) => {
   }
 };
 
-export const getBurgerByIdReducer = (state = { }, action) => {
+export const getBurgerByIdReducer = (state = {burgers:null}, action) => {
   switch (action.type) {
     case "GET_BURGERSBYID_REQUEST":
       return {
@@ -64,7 +64,7 @@ export const addBurgerReducer = (state = { } , action) => {
   }
 };
 
-export const editBurgerReducer = (state = { } , action) => {
+export const editBurgerReducer = (state = {} , action) => {
   switch (action.type) {
     case "EDIT_BURGER_REQUEST":
       return {

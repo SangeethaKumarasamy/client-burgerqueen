@@ -14,10 +14,8 @@ export const getAllBurgers = () => async (dispatch) => {
 export const getBurgerById = (burgerid) => async (dispatch) => {
   dispatch({ type: "GET_BURGERSBYID_REQUEST" });
   try {
-    const response = await axios.post("/api/burgers/getburgerbyid", {
-      burgerid,
-    });
-    console.log(response);
+    const response = await axios.post("/api/burgers/getburgerbyid",{burgerid});
+    // console.log(response);
     dispatch({ type: "GET_BURGERSBYID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_BURGERSBYID_FAILED", payload: error });

@@ -29,9 +29,9 @@ function BurgersList() {
         </thead>
         <tbody>
           {burgers &&
-            burgers.map((burger) => {
+            burgers.map((burger,id) => {
               return (
-                <tr>
+                <tr key={id}>
                   <td>{burger.name}</td>
                   <td>
                     Quarter:{burger.prices[0]["Quarter"]}
