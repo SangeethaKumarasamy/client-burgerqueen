@@ -1,9 +1,10 @@
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const getAllBurgers = () => async (dispatch) => {
   dispatch({ type: "GET_BURGERS_REQUEST" });
   try {
-    const response = await axios.get("/api/burgers/getallburgers");
+    const response = await axios.get(`${BASE_URL}/api/burgers/getallburgers`);
     console.log(response);
     dispatch({ type: "GET_BURGERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -14,7 +15,9 @@ export const getAllBurgers = () => async (dispatch) => {
 export const getBurgerById = (burgerid) => async (dispatch) => {
   dispatch({ type: "GET_BURGERSBYID_REQUEST" });
   try {
-    const response = await axios.post("/api/burgers/getburgerbyid",{burgerid});
+    const response = await axios.post(`${BASE_URL}/api/burgers/getburgerbyid`, {
+      burgerid,
+    });
     console.log(response);
     dispatch({ type: "GET_BURGERSBYID_SUCCESS", payload: response.data });
   } catch (error) {
@@ -26,7 +29,7 @@ export const filterBurgers = (searchkey, category) => async (dispatch) => {
   var filteredBurgers;
   dispatch({ type: "GET_BURGERS_REQUEST" });
   try {
-    const response = await axios.get("/api/burgers/getallburgers");
+    const response = await axios.get(`${BASE_URL}/api/burgers/getallburgers`);
     filteredBurgers = response.data.filter((burger) =>
       burger.name.toLowerCase().includes(searchkey)
     );
@@ -44,7 +47,9 @@ export const filterBurgers = (searchkey, category) => async (dispatch) => {
 export const addBurger = (burger) => async (dispatch) => {
   dispatch({ type: "ADD_BURGER_REQUEST" });
   try {
-    const response = await axios.post("/api/burgers/addburger", { burger });
+    const response = await axios.post(`${BASE_URL}/api/burgers/addburger`, {
+      burger,
+    });
     console.log(response);
     dispatch({ type: "ADD_BURGER_SUCCESS" });
   } catch (error) {
@@ -55,7 +60,7 @@ export const addBurger = (burger) => async (dispatch) => {
 export const editBurger = (editedburger) => async (dispatch) => {
   dispatch({ type: "EDIT_BURGER_REQUEST" });
   try {
-    const response = await axios.post("/api/burgers/editburger", {
+    const response = await axios.post(`${BASE_URL}/api/burgers/editburger`, {
       editedburger,
     });
     console.log(response);
@@ -68,8 +73,8 @@ export const editBurger = (editedburger) => async (dispatch) => {
 
 export const deleteBurger = (burgerid) => async (dispatch) => {
   try {
-    const response = await axios.post("/api/burgers/deleteburger", {
-      burgerid
+    const response = await axios.post(`${BASE_URL}/api/burgers/deleteburger`, {
+      burgerid,
     });
     alert("Burger deleted successfully !!");
     console.log(response);

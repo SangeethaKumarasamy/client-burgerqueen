@@ -1,11 +1,12 @@
 import axios from "axios";
+const  BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   dispatch({ type: "PLACE_ORDER_REQUEST" });
   const currentUser = getState().loginUserReducer.currentUser;
   const cartItems = getState().cartReducer.cartItems;
   try {
-    const response = await axios.post("/api/orders/placeorder", {
+    const response = await axios.post(`${BASE_URL}/api/orders/placeorder`, {
       token,
       subtotal,
       currentUser,
@@ -22,7 +23,7 @@ export const getUserOrders = () => async (dispatch, getState) => {
   const currentUser = getState().loginUserReducer.currentUser;
   dispatch({ type: "GET_USER_ORDERS_REQUEST" });
   try {
-    const response = await axios.post("/api/orders/getuserorders", {
+    const response = await axios.post(`${BASE_URL}/api/orders/getuserorders`, {
       userid: currentUser._id,
     });
     console.log(response);
@@ -37,7 +38,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
   const currentUser = getState().loginUserReducer.currentUser;
   dispatch({ type: "GET_ALL_ORDERS_REQUEST" });
   try {
-    const response = await axios.get("/api/orders/getallorders" );
+    const response = await axios.get(`${BASE_URL}/api/orders/getallorders` );
     console.log(response);
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -47,7 +48,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
 
 export const deliverOrder=(orderid)=>async dispatch=>{
   try {
-    const response = await axios.post("/api/orders/deliverorder",{orderid})
+    const response = await axios.post(`${BASE_URL}/api/orders/deliverorder`,{orderid})
     console.log(response);
     alert("order delivered !!");
     const orders=await axios.get("/api/orders/getallorders")
