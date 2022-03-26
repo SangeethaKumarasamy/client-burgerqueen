@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBurgerById } from "../actions/burgerActions";
+import { getBurgerById,editBurger } from "../actions/burgerActions";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Success from "../components/Success";
@@ -9,9 +9,9 @@ import Success from "../components/Success";
 function EditBurger() {
   const { burgerid } = useParams();
   const [name, setName] = useState("");
-  const [quarterPrice, setQuarterPrice] = useState();
-  const [doublePrice, setDoublePrice] = useState();
-  const [bigMacPrice, setBigMacPrice] = useState();
+  const [quarterPrice, setQuarterPrice] = useState(0);
+  const [doublePrice, setDoublePrice] = useState(0);
+  const [bigMacPrice, setBigMacPrice] = useState(0);
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -24,53 +24,26 @@ function EditBurger() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!burger) {
-  //     dispatch(getBurgerById(burgerid));
-  //   } else {
-  //     setName(burger.name);
-  //     setDescription(burger.description);
-  //     setCategory(burger.category);
-  //     setQuarterPrice(burger.prices[0]["Quarter"]);
-  //     setDoublePrice(burger.prices[0]["Double"]);
-  //     setBigMacPrice(burger.prices[0]["Big_Mac"]);
-  //     setImage(burger.image);
-
-  //     dispatch(getBurgerById(burgerid));
-  //   }
-  // }, [burger, dispatch]);
-
-
   useEffect(() => {
-
-    if(burger)
-    {
-        if(burger._id==burgerid)
-        {
-          setName(burger.name);
-          setDescription(burger.description);
-          setCategory(burger.category);
-          setQuarterPrice(burger.prices[0]["Quarter"]);
-          setDoublePrice(burger.prices[0]["Double"]);
-          setBigMacPrice(burger.prices[0]["Big_Mac"]);
-          setImage(burger.image);
-    
-        }
-        else{
-            dispatch(getBurgerById(burgerid));
-        }
-        
-    }
-    else{
+    if (burger) {
+      if (burger._id == burgerid) {
+        setName(burger.name);
+        setDescription(burger.description);
+        setCategory(burger.category);
+        setQuarterPrice(burger.prices[0]["Quarter"]);
+        setDoublePrice(burger.prices[0]["Double"]);
+        setBigMacPrice(burger.prices[0]["Big_Mac"]);
+        setImage(burger.image);
+      } else {
         dispatch(getBurgerById(burgerid));
+      }
+    } else {
+      dispatch(getBurgerById(burgerid));
     }
-
-
-
-  }, [burger , dispatch]);
+  }, [burger, dispatch]);
 
   function formHandler(e) {
-     e.preventDefault();
+    e.preventDefault();
 
     const editedburger = {
       _id: burgerid,
@@ -84,8 +57,8 @@ function EditBurger() {
         Big_Mac: bigMacPrice,
       },
     };
-    // console.log(editedburger);
-    dispatch(editburger(editedburger));
+    //  console.log(editedburger);
+    dispatch(editBurger(editedburger));
   }
 
   return (
@@ -108,7 +81,7 @@ function EditBurger() {
             placeholder="Name"
             value={name}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setName(e.target.value);
               //console.log(name);
             }}
@@ -119,7 +92,7 @@ function EditBurger() {
             placeholder="Quarter variant price"
             value={quarterPrice}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setQuarterPrice(e.target.value);
             }}
           />
@@ -129,7 +102,7 @@ function EditBurger() {
             placeholder="Double variant price"
             value={doublePrice}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setDoublePrice(e.target.value);
             }}
           />
@@ -139,7 +112,7 @@ function EditBurger() {
             placeholder="Big-Mac variant price"
             value={bigMacPrice}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setBigMacPrice(e.target.value);
             }}
           />
@@ -149,7 +122,7 @@ function EditBurger() {
             placeholder="Image "
             value={image}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setImage(e.target.value);
             }}
           />
@@ -159,7 +132,7 @@ function EditBurger() {
             placeholder="Description"
             value={description}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setDescription(e.target.value);
             }}
           />
@@ -170,7 +143,7 @@ function EditBurger() {
             placeholder="Category"
             value={category}
             onChange={(e) => {
-               //e.preventDefault();
+              //e.preventDefault();
               setCategory(e.target.value);
             }}
           />

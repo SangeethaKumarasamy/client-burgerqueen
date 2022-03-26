@@ -42,11 +42,21 @@ export default function NavBar() {
                 </div>
               </div>
             ) : (
-              <li className="nav-item active">
-                <a className="nav-link" href="/login">
-                  LogIn
-                </a>
-              </li>
+              <div className="dropdown">
+                  <a className="dropbtn nav-link" href="/login">LogIn</a>
+                  <div className="dropdown-content width-800">
+                    <p>
+                      Admin Credentials: email : abc@gmail.com password :
+                      1234
+                    </p>
+                  </div>
+                </div>
+              
+              // <li className="nav-item active">
+              //   <a className="nav-link" href="/login">
+              //     LogIn
+              //   </a>
+              // </li>
             )}
 
             <li className="nav-item">

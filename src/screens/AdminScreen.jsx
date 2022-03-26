@@ -45,12 +45,11 @@ function AdminScreen() {
             </li>
           </ul>
           <Routes>
-            <Route path="/admin" element={UsersList} exact/>
-            <Route path="/admin/usersList" element={<UsersList />} />
-            <Route path="/admin/burgersList" element={<BurgersList />} />
-            <Route path="/admin/addBurger" element={<AddBurger />} />
-            <Route path="/admin/ordersList" element={<OrdersList />} />
-            <Route path="/admin/editBurger/:burgerid" element={<EditBurger />} />
+            <Route path="/usersList" element={<UsersList />} />
+            <Route path="/burgersList" element={<BurgersList />} />
+            <Route path="/addBurger" element={<AddBurger />} />
+            <Route path="/ordersList" element={<OrdersList />} />
+            <Route path="/editBurger/:burgerid" element={<EditBurger />} />
           </Routes>
         </div>
       </div>
