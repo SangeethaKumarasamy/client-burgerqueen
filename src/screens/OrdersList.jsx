@@ -4,14 +4,15 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Filter from "../components/Filter";
 import { deliverOrder, getAllOrders } from "../actions/orderActions";
-import { getUserOrdersReducer } from "../reducers/orderReducer";
+import { getAllOrdersReducer } from "../reducers/orderReducer";
 function OrdersList() {
   const dispatch = useDispatch();
-  const getorderstate = useSelector((state) => getUserOrdersReducer);
+  const getorderstate = useSelector((state) =>state.getAllOrdersReducer);
   const { loading, error, orders } = getorderstate;
   useEffect(() => {
     dispatch(getAllOrders());
   }, []);
+  
   return (
     <div>
       {loading && <Loading />}
@@ -29,16 +30,20 @@ function OrdersList() {
         </thead>
         <tbody>
           {orders &&
-            orders.map((order) => {
+            orders.map((order,id) => {
               return (
-                <tr>
+                <tr key={id}>
                   <td>{order._id}</td>
                   <td>{order.email}</td>
                   <td>{order.userid}</td>
                   <td>{order.orderAmount}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>Status</td>
+                  <td>{order.orderStatus}</td>
                   <td>
+                    
+
+                    
                     {order.isDelivered ? (
                       <h2>Delivered</h2>
                     ) : (

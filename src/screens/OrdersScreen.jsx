@@ -8,30 +8,30 @@ function OrdersScreen() {
   const dispatch = useDispatch();
 
   const orderstate = useSelector((state) => state.getUserOrdersReducer);
-  const { order, error, loading } = orderstate;
+  const { orders, error, loading } = orderstate;
   useEffect(() => {
     dispatch(getUserOrders());
   }, []);
 
   return (
     <div>
-      <p>My Orders</p>
+      <h2>My Orders</h2>
       <div className="row justify-content-center" style={{backgroundColor:"wheat",color:"black"}}>
         {loading && (<Loading />)}
         {error && (<Error error="Something went wrong !!" />)}
-        {order &&
-          order.map((orders) => {
+        {orders &&
+          orders.map((order) => {
             return (
               <div className="col-md-8 m-2 p-1">
                 <div className="flex-container">
                   <div className="text-left w-100 m-1">
                     <h3 style={{ fontSize: "25px" }}>Items</h3>
                     <hr/>
-                    {orders.orderItems.map((item) => {
+                    {order.orderItems.map((item) => {
                       return (
                         <div>
                           <h1>
-                            {item.name} [{item.varient}]*{item.quantity}=
+                            {item.name} [{item.variant}]*{item.quantity}=
                             {item.price}
                           </h1>
                         </div>
@@ -48,11 +48,11 @@ function OrdersScreen() {
                   </div>
                   <div className="text-left w-100 m-1">
                     
-                    <hr/>
+                    
                     <h3 style={{ fontSize: "25px" }}>Order Info</h3>
+                    <hr/>
                     <p>Order Amount :{order.orderAmount}</p>
                     <p>Date : {order.createdAt.substring(0, 10)}</p>
-                    <p>Transaction Id:{order.transactionId}</p>
                     <p>Order Id: {order._id}</p>
                   </div>
                 </div>
