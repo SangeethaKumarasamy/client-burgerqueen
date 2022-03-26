@@ -21,7 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LogInScreen />} />
           <Route path="/orders"  element={<OrdersScreen />} />
-          <Route path="/admin/*" element={<AdminScreen />} />
+          <Route path="/admin" element={<AdminScreen />} />
         </Routes>
       </BrowserRouter>
     </div>

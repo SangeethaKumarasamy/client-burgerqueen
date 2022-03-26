@@ -9,9 +9,9 @@ import Success from "../components/Success";
 function EditBurger() {
   const { burgerid } = useParams();
   const [name, setName] = useState("");
-  const [quarterPrice, setQuarterPrice] = useState(0);
-  const [doublePrice, setDoublePrice] = useState(0);
-  const [bigMacPrice, setBigMacPrice] = useState(0);
+  const [quarterPrice, setQuarterPrice] = useState();
+  const [doublePrice, setDoublePrice] = useState();
+  const [bigMacPrice, setBigMacPrice] = useState();
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -24,21 +24,50 @@ function EditBurger() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!burger) {
-      dispatch(getBurgerById(burgerid));
-    } else {
-      setName(burger.name);
-      setDescription(burger.description);
-      setCategory(burger.category);
-      setQuarterPrice(burger.prices[0]["Quarter"]);
-      setDoublePrice(burger.prices[0]["Double"]);
-      setBigMacPrice(burger.prices[0]["Big_Mac"]);
-      setImage(burger.image);
+  // useEffect(() => {
+  //   if (!burger) {
+  //     dispatch(getBurgerById(burgerid));
+  //   } else {
+  //     setName(burger.name);
+  //     setDescription(burger.description);
+  //     setCategory(burger.category);
+  //     setQuarterPrice(burger.prices[0]["Quarter"]);
+  //     setDoublePrice(burger.prices[0]["Double"]);
+  //     setBigMacPrice(burger.prices[0]["Big_Mac"]);
+  //     setImage(burger.image);
 
-      dispatch(getBurgerById(burgerid));
+  //     dispatch(getBurgerById(burgerid));
+  //   }
+  // }, [burger, dispatch]);
+
+
+  useEffect(() => {
+
+    if(burger)
+    {
+        if(burger._id==burgerid)
+        {
+          setName(burger.name);
+          setDescription(burger.description);
+          setCategory(burger.category);
+          setQuarterPrice(burger.prices[0]["Quarter"]);
+          setDoublePrice(burger.prices[0]["Double"]);
+          setBigMacPrice(burger.prices[0]["Big_Mac"]);
+          setImage(burger.image);
+    
+        }
+        else{
+            dispatch(getBurgerById(burgerid));
+        }
+        
     }
-  }, [burger, dispatch]);
+    else{
+        dispatch(getBurgerById(burgerid));
+    }
+
+
+
+  }, [burger , dispatch]);
 
   function formHandler(e) {
      e.preventDefault();
@@ -81,7 +110,7 @@ function EditBurger() {
             onChange={(e) => {
                //e.preventDefault();
               setName(e.target.value);
-              console.log(name);
+              //console.log(name);
             }}
           />
           <input

@@ -22,12 +22,11 @@ function LogInScreen() {
     dispatch(loginUser(user));
   }
   return (
-    <div>
+    <div className="login">
       <div
         className=" mx-auto row justify-content-center mt-5 shadow-lg p-3 mb-5 bg-white rounded"
         style={{ width: "600px" }}
       >
-       
         <h2>Login</h2>
         {loading && <Loading />}
         {error && <Error error="Invalid Credentials !!" />}
