@@ -51,7 +51,7 @@ export const deliverOrder=(orderid)=>async dispatch=>{
     console.log(response);
     alert("order delivered !!");
     const orders=await axios.get("/api/orders/getallorders")
-    dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: response.data });
+    dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: orders.data });
  
   } catch (error) {
     console.log(error)

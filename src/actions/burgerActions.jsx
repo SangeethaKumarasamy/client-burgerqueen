@@ -15,20 +15,20 @@ export const getBurgerById = (burgerid) => async (dispatch) => {
   dispatch({ type: "GET_BURGERSBYID_REQUEST" });
   try {
     const response = await axios.post("/api/burgers/getburgerbyid",{burgerid});
-    // console.log(response);
+    console.log(response);
     dispatch({ type: "GET_BURGERSBYID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_BURGERSBYID_FAILED", payload: error });
   }
 };
 
-export const filterBurgers = (searchKey, category) => async (dispatch) => {
+export const filterBurgers = (searchkey, category) => async (dispatch) => {
   var filteredBurgers;
   dispatch({ type: "GET_BURGERS_REQUEST" });
   try {
     const response = await axios.get("/api/burgers/getallburgers");
     filteredBurgers = response.data.filter((burger) =>
-      burger.name.toLowerCase().includes(searchKey)
+      burger.name.toLowerCase().includes(searchkey)
     );
     if (category != "all") {
       filteredBurgers = response.data.filter(

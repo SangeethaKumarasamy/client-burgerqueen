@@ -17,7 +17,7 @@ function Burger({ burger }) {
   }
 
   return (
-    <div className="shadow-lg mb-3 bg-white rounded">
+    <div key={burger._id} className="shadow-lg mb-3 bg-white rounded">
       <div onClick={handleShow}>
         <h1>{burger.name}</h1>
         <img
@@ -68,7 +68,7 @@ function Burger({ burger }) {
           </button>
         </div>
       </div>
-      <Modal show={show}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{burger.name}</Modal.Title>
         </Modal.Header>

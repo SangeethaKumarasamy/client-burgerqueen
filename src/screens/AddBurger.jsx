@@ -37,7 +37,7 @@ function AddBurger() {
   }
   return (
     <div>
-      <div>
+      <div className="text-left shadow-lg p-3 mb-5 bg-white rounded">
         <h2>Add Burger</h2>
         {loading && (<Loading/>)}
         {error && (<Error error="Something went wrong !!"/>)}
@@ -84,7 +84,7 @@ function AddBurger() {
           <input
             className="form-control"
             type="text"
-            placeholder="Image "
+            placeholder="Image Url"
             value={image}
             onChange={(e) => {
               setImage(e.target.value);
