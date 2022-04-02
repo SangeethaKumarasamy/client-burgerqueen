@@ -6,6 +6,7 @@ export default function NavBar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
+  // console.log(currentUser);
   const dispatch = useDispatch();
 
   return (
@@ -31,7 +32,14 @@ export default function NavBar() {
               <div className="dropdown">
                 <a className="dropbtn nav-link">{currentUser.name}</a>
                 <div className="dropdown-content">
-                  <a  className="dropdown-item" href="/orders">Orders</a>
+                  {currentUser.isAdmin && 
+                    <a className="dropdown-item" href="/admin">
+                      Admin
+                    </a>
+                  }
+                  <a className="dropdown-item" href="/orders">
+                    Orders
+                  </a>
                   <a
                     className="dropdown-item"
                     href="#"
@@ -43,15 +51,11 @@ export default function NavBar() {
               </div>
             ) : (
               <div className="dropdown">
-                  <a className="dropbtn nav-link" href="/login">LogIn</a>
-                  <div className="dropdown-content width-800">
-                    <p>
-                      Admin Credentials: email : abc@gmail.com password :
-                      1234
-                    </p>
-                  </div>
-                </div>
-              
+                <a className="dropbtn nav-link" href="/login">
+                  LogIn
+                </a>
+              </div>
+
               // <li className="nav-item active">
               //   <a className="nav-link" href="/login">
               //     LogIn

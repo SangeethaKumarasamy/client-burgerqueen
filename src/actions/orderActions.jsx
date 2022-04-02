@@ -1,17 +1,17 @@
 import axios from "axios";
-const  BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-export const placeOrder = (subtotal) => async (dispatch, getState) => {
+export const placeOrder = (subtotal,query) => async (dispatch, getState) => {
   dispatch({ type: "PLACE_ORDER_REQUEST" });
   const currentUser = getState().loginUserReducer.currentUser;
   const cartItems = getState().cartReducer.cartItems;
   try {
-    const response = await axios.post(`${BASE_URL}/api/orders/placeorder`, {
-      
+    const response = await axios.post(`${BASE_URL}/api/orders/placeorder/${query}`, {
       subtotal,
       currentUser,
       cartItems,
     });
+
     dispatch({ type: "PLACE_ORDER_SUCCESS" });
     console.log(response);
   } catch (error) {
@@ -33,12 +33,11 @@ export const getUserOrders = () => async (dispatch, getState) => {
   }
 };
 
-
 export const getAllOrders = () => async (dispatch, getState) => {
   const currentUser = getState().loginUserReducer.currentUser;
   dispatch({ type: "GET_ALL_ORDERS_REQUEST" });
   try {
-    const response = await axios.get(`${BASE_URL}/api/orders/getallorders` );
+    const response = await axios.get(`${BASE_URL}/api/orders/getallorders`);
     console.log(response);
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -46,15 +45,16 @@ export const getAllOrders = () => async (dispatch, getState) => {
   }
 };
 
-export const deliverOrder=(orderid)=>async dispatch=>{
+export const deliverOrder = (orderid) => async (dispatch) => {
   try {
-    const response = await axios.post(`${BASE_URL}/api/orders/deliverorder`,{orderid})
+    const response = await axios.post(`${BASE_URL}/api/orders/deliverorder`, {
+      orderid,
+    });
     console.log(response);
     alert("order delivered !!");
-    const orders=await axios.get("/api/orders/getallorders")
+    const orders = await axios.get("/api/orders/getallorders");
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: orders.data });
- 
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};

@@ -2,14 +2,15 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartActions";
 import { deleteFromCart } from "../actions/cartActions";
-import CheckOut from "../components/CheckOut";
+import CheckOut from "../components/CheckOut"; 
 
 function CartScreen() {
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
+  const {currentUser}=useSelector((state)=>state.loginUserReducer);
   let subtotal =cartItems.reduce((x,item)=>x+item.price,0)
   const dispatch = useDispatch();
-
+  
   return (
     <div className="row justify-content-center">
       <div className="col-md-6">
@@ -67,7 +68,7 @@ function CartScreen() {
       <div className="col-md-4">
         <h2>SubTotal : ₹ {subtotal}</h2>
         <br/>
-        <CheckOut subtotal={subtotal}/>
+        <CheckOut subtotal={subtotal} details={{name:currentUser.name,email:currentUser.email}}/>
       </div>
     </div>
   );

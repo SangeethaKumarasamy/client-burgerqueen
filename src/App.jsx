@@ -8,6 +8,7 @@ import LogInScreen from "./screens/LogInScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import OrdersScreen from "./screens/OrdersScreen";
 import AdminScreen from "./screens/AdminScreen";
+import Paytm from './components/Paytm';
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/cart"element={<CartScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/login" element={<LogInScreen />} />
-          <Route path="/orders"  element={<OrdersScreen />} />
-          <Route path="/admin/*" element={<AdminScreen />} />
+          <Route exact path="/" element={<HomeScreen />} />
+          <Route exact path="/cart"element={<CartScreen />} />
+          <Route exact path="/register" element={<RegisterScreen />} />
+          <Route exact path="/login" element={<LogInScreen />} />
+          <Route exact path="/orders"  element={<OrdersScreen />} />
+          <Route exact path="/admin/*" element={<AdminScreen />} />
+          <Route exact path="/payment" element={<Paytm/>}/>
         </Routes>
       </BrowserRouter>
     </div>

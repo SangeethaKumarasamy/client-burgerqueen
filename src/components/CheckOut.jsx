@@ -1,24 +1,54 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { placeOrder } from "../actions/orderActions";
-import Success from "../components/Success";
-import Error from "../components/Error";
-import Loading from "../components/Loading";
 
-
-function CheckOut({ subtotal }) {
-  const orderstate = useSelector((state) => state.placeOrderReducer);
-  const { loading, error, success } = orderstate;
-  const dispatch = useDispatch();
-
-    // dispatch(placeOrder(subtotal));
+function CheckOut({ subtotal, details }) {
+  // dispatch(placeOrder(subtotal));
   return (
     <div>
-      {loading && (<Loading/>)}
-      {error && (<Error error="Something went wrong !!"/>)}
-      {success && (<Success success="Your order placed successfully "/>)}
-       <button className="btn" onClick={() =>{dispatch(placeOrder(subtotal))}}>Place Order</button>
-      
+      <form
+        className=""
+        action="http://localhost:7000/paynow"
+        method="post"
+        target="_self"
+      >
+        <input
+          hidden
+          className="form-control"
+          type="text"
+          name="name"
+          value={details.name}
+        />
+        <input
+          hidden
+          className="form-control"
+          type="text"
+          name="email"
+          value={details.email}
+        />
+        <input
+          hidden
+          className="form-control"
+          type="text"
+          name="phone"
+          value="8248929032"
+        />
+        <input
+          hidden
+          className="form-control"
+          type="text"
+          name="amount"
+          value={`${subtotal}`}
+        />
+        <button className="btn form-control btn-primary">Place Order</button>
+      </form>
+      {/* <button
+      type="submit"
+        className="btn"
+        onClick={() => {
+          dispatch(placeOrder(subtotal));
+        }}
+      >
+        Place Order
+      </button> */}
     </div>
   );
 }
