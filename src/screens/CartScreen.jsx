@@ -58,6 +58,7 @@ function CartScreen() {
                   aria-hidden="true"
                   onClick={() => {
                     dispatch(deleteFromCart(item));
+                    
                   }}
                 ></i>
               </div>
