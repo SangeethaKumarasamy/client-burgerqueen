@@ -6,7 +6,7 @@ function CheckOut({ subtotal, details }) {
     <div>
       <form
         className=""
-        action="http://localhost:7000/paynow"
+        action="https://burgerqueen-vs.herokuapp.com/paynow"
         method="post"
         target="_self"
       >
