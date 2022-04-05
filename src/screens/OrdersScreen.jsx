@@ -15,7 +15,7 @@ function OrdersScreen() {
 
   return (
     <div>
-      <h2>My Orders</h2>
+      <h2>Payment Successful !!</h2>
       <div
         className="row justify-content-center"
         style={{ backgroundColor: "wheat", color: "black" }}
@@ -52,10 +52,7 @@ function OrdersScreen() {
                         />
                       );
                     })}
-                    {/* <p>Street : {order.shippingAddress.street}</p>
-                    <p>City : {order.shippingAddress.city}</p>
-                    <p>Country : {order.shippingAddress.country}</p>
-                    <p>Pincode : {order.shippingAddress.pincode}</p> */}
+                    
                   </div>
                   <div className="text-left w-100 m-1">
                     <h3 style={{ fontSize: "25px" }}>Order Info</h3>
