@@ -45,7 +45,7 @@ function LogInScreen() {
 
             <input
               required
-              type="text"
+              type="password"
               placeholder="password"
               className="form-control"
               value={password}

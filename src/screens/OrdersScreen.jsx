@@ -16,9 +16,12 @@ function OrdersScreen() {
   return (
     <div>
       <h2>My Orders</h2>
-      <div className="row justify-content-center" style={{backgroundColor:"wheat",color:"black"}}>
-        {loading && (<Loading />)}
-        {error && (<Error error="Something went wrong !!" />)}
+      <div
+        className="row justify-content-center"
+        style={{ backgroundColor: "wheat", color: "black" }}
+      >
+        {loading && <Loading />}
+        {error && <Error error="Something went wrong !!" />}
         {orders &&
           orders.map((order) => {
             return (
@@ -26,7 +29,7 @@ function OrdersScreen() {
                 <div className="flex-container">
                   <div className="text-left w-100 m-1">
                     <h3 style={{ fontSize: "25px" }}>Items</h3>
-                    <hr/>
+                    <hr />
                     {order.orderItems.map((item) => {
                       return (
                         <div>
@@ -39,21 +42,27 @@ function OrdersScreen() {
                     })}
                   </div>
                   <div className="text-left w-100 m-1">
-                    <h3 style={{ fontSize: "25px" }}>Address</h3>
-                    <hr/>
-                    <p>Street : {order.shippingAddress.street}</p>
+                    <h3 style={{ fontSize: "25px" }}>Image</h3>
+                    <hr />
+                    {order.orderItems.map((item) => {
+                      return (
+                        <img
+                          src={item.image}
+                          style={{ height: "180px", width: "180px" }}
+                        />
+                      );
+                    })}
+                    {/* <p>Street : {order.shippingAddress.street}</p>
                     <p>City : {order.shippingAddress.city}</p>
                     <p>Country : {order.shippingAddress.country}</p>
-                    <p>Pincode : {order.shippingAddress.pincode}</p>
+                    <p>Pincode : {order.shippingAddress.pincode}</p> */}
                   </div>
                   <div className="text-left w-100 m-1">
-                    
-                    
                     <h3 style={{ fontSize: "25px" }}>Order Info</h3>
-                    <hr/>
-                    <p>Order Amount :{order.orderAmount}</p>
-                    <p>Date : {order.createdAt.substring(0, 10)}</p>
-                    <p>Order Id: {order._id}</p>
+                    <hr />
+                    <p><b>Order Amount :</b><i>{order.orderAmount}</i></p>
+                    <p><b>Date :</b> <i>{order.createdAt.substring(0, 10)}</i></p>
+                    <p><b>Order ID: </b><i>{order._id}</i></p>
                   </div>
                 </div>
               </div>
